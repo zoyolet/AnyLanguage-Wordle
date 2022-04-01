@@ -1,0 +1,99 @@
+{
+  "about": "Konsènan jwèt la",
+  "gameName": "{{language}}",
+  "enterKey": "Antre",
+  "deleteKey": "Efase",
+  "notEnoughLetters": "Antre plis lèt",
+  "wordNotFound": "Mo sa a pa nan vokabilè jwèt la. Nou pral verifye si n ka ajoute l.",
+  "solution": "Solisyon an se : {{solution}}",
+  "gameCopied": "Jwèt la kopye",
+  "howToPlay": "Ki jan w jwe jwèt la",
+  "instructions": "Ou gen{{tries}} chans pou w devinen solisyon an. Apre chak mo ou pwopoze, koulè kare yo ap chanje yon fason pou w ka wè si w pre jwenn solisyon lan.",
+  "pickYourLanguage": "Chwazi yon lang",
+  "correctSpotInstructions": "Lèt A nan mo a e li nan bon pozisyon an.",
+  "wrongSpotInstructions": "Lèt AN nan mo a. Men, pozisyon an pa kòrèk.",
+  "notInWordInstructions": "Lèt NG pa nan mo a ditou pyès.",
+  "guessDistribution": "Guess Distribution",
+  "statistics": "Estatistik",
+  "totalTries": "Kantite total esè",
+  "successRate": "To reyisit",
+  "currentStreak": "Kantite fwa ou jwen solisyon an youn apre lòt",
+  "bestStreak": "Rekò kantite fwa ou jwenn solisyon an",
+  "newWordCountdown": "Nouvo mo nan",
+  "share": "Pataje",
+  "winMessages": ["Mayifik !", "Bèl travay !", "Bon travay !"],
+  "firstExampleWord": [
+    {
+      "letter": "A",
+      "highlight": true
+    },
+    {
+      "letter": "B",
+      "highlight": false
+    },
+    {
+      "letter": "A",
+      "highlight": false
+    },
+    {
+      "letter": "K",
+      "highlight": false
+    },
+    {
+      "letter": "O",
+      "highlight": false
+    }
+  ],
+  "secondExampleWord": [
+    {
+      "letter": "A",
+      "highlight": false
+    },
+    {
+      "letter": "B",
+      "highlight": false
+    },
+    {
+      "letter": "I",
+      "highlight": false
+    },
+    {
+      "letter": "T",
+      "highlight": false
+    },
+    {
+      "letter": "AN",
+      "highlight": true
+    }
+  ],
+  "thirdExampleWord": [
+    {
+      "letter": "F",
+      "highlight": false
+    },
+    {
+      "letter": "I",
+      "highlight": false
+    },
+    {
+      "letter": "L",
+      "highlight": false
+    },
+    {
+      "letter": "I",
+      "highlight": false
+    },
+    {
+      "letter": "NG",
+      "highlight": true
+    }
+  ],
+  "aboutAuthorSentence": "Sa se yon vèsyon lib pou jwèt Wordle pou {{language}}. Se <3>{{author}}</3> ki kreye vèsyon sa a. ",
+  "aboutCodeSentence": "Tcheke <1>vèsyon orijinal</1> <3>Hannah Park</3> la oswa gade vèsyon <5>Aidan Pine</5> la epi adapte l pou yon lòt lang ! ",
+  "aboutDataSentence": "Nou jwenn vokabilè pou vèsyon kreyòl la soti nan resous sa yo : <1>{{wordListSource}}</1>. ",
+  "aboutOriginalSentence": "Y Ou ka jwe vèsyon orijinal la <1>la</1>",
+  "languages": {
+    "ht": "Kreyòl",
+    "en": "English"
+  }
+}
