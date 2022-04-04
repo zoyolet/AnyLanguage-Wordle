@@ -22,6 +22,33 @@ import '@bcgov/bc-sans/css/BCSans.css'
 import './i18n'
 import { withTranslation, WithTranslation } from 'react-i18next'
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'firebase/app'
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite'
+import { getDatabase, ref, set } from 'firebase/database'
+import { getAnalytics } from 'firebase/analytics'
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  // apiKey: 'AIzaSyDL8PfyBAbHQ4LxtIh-_eM5xtBpoXh7TLY',
+  // authDomain: 'kreyol-wordle-d39ac.firebaseapp.com',
+  // databaseURL: 'https://kreyol-wordle-d39ac-default-rtdb.firebaseio.com',
+  // projectId: 'kreyol-wordle-d39ac',
+  // storageBucket: 'kreyol-wordle-d39ac.appspot.com',
+  // messagingSenderId: '914895513281',
+  // appId: '1:914895513281:web:8d4a01cf80c2d5835fd640',
+  // measurementId: 'G-WXPNZV9QN7',
+}
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
+const analytics = getAnalytics(app)
+
+const db = getFirestore(app)
+
 const ALERT_TIME_MS = 2000
 
 const App: React.FC<WithTranslation> = ({ t, i18n }) => {
@@ -122,7 +149,10 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
     ) {
       setGuesses([...guesses, currentGuess])
       setCurrentGuess([])
-
+      const db = getDatabase()
+      set(ref(db, 'wordlist/'), {
+        word: currentGuess.join(''),
+      })
       if (winningWord) {
         setStats(addStatsForCompletedGame(stats, guesses.length))
         return setIsGameWon(true)
