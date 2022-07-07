@@ -24,9 +24,7 @@ import { withTranslation, WithTranslation } from 'react-i18next'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite'
-import { getDatabase, ref, set, push } from 'firebase/database'
-import { getAnalytics } from 'firebase/analytics'
+import { getDatabase, ref, push } from 'firebase/database'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -45,9 +43,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app)
-
-const db = getFirestore(app)
 
 const ALERT_TIME_MS = 2000
 
@@ -72,6 +67,14 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
       .includes(solution)
     if (gameWasWon) {
       setIsGameWon(true)
+    }
+    if (solution !== null || solution !== '') {
+      const db = getDatabase()
+      const postListRef = ref(db, 'solutionlist/')
+
+      push(postListRef, {
+        word: solution,
+      })
     }
     if (loaded.guesses.length === CONFIG.tries && !gameWasWon) {
       setIsGameLost(true)
@@ -137,17 +140,20 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
     if (!isWordInWordList(currentGuess.join(''))) {
       setIsWordNotFoundAlertOpen(true)
       const db = getDatabase()
+      var time = new Date('mm/dd/yyyy')
       const postListRef = ref(db, 'wordlist')
-      const newPostRef = push(postListRef)
-      set(newPostRef, {
-        // ...
-        word: currentGuess.join(''),
+      var word = currentGuess.join('')
+      // const newPostRef = push(postListRef)
+      push(postListRef, {
+        time: time,
+        word: word,
       })
       return setTimeout(() => {
         setIsWordNotFoundAlertOpen(false)
       }, ALERT_TIME_MS)
     }
     const winningWord = isWinningWord(currentGuess.join(''))
+    console.log(winningWord)
 
     if (
       currentGuess.length === CONFIG.wordLength &&
@@ -156,11 +162,6 @@ const App: React.FC<WithTranslation> = ({ t, i18n }) => {
     ) {
       setGuesses([...guesses, currentGuess])
       setCurrentGuess([])
-      // const db = getDatabase()
-      // set(ref(db, 'wordlist/'), {
-      //   word: currentGuess.join(''),
-      // })
-      // Create a new post reference with an auto-generated id
 
       if (winningWord) {
         setStats(addStatsForCompletedGame(stats, guesses.length))
